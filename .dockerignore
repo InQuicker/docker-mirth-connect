@@ -1,0 +1,7 @@
+.gitattributes
+.dockerignore
+.git
+Dockerfile
+LICENSE
+README.md
+pkg
