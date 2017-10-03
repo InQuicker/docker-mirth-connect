@@ -1,11 +1,11 @@
-#! /bin/bash
+#!/bin/sh
 
 set -e
 
 if [ "$1" = 'java' ]; then
     chown -R mirth /opt/mirth-connect/appdata
 
-    su -c mirth "$@"
+    exec gosu mirth "$@"
 fi
 
 exec "$@"
