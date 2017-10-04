@@ -1,1 +1,2 @@
 pkg/mirthconnect-3.5.1.b194-unix.tar.gz filter=lfs diff=lfs merge=lfs -text
+pkg/traefix-1.4.0-rc4 filter=lfs diff=lfs merge=lfs -text
