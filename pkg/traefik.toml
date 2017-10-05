@@ -1,0 +1,38 @@
+defaultEntryPoints = ["http"]
+insecureSkipVerify = true
+
+logLevel = "DEBUG"
+
+[accessLog]
+format = "json"
+
+[web]
+address = ":8888"
+readOnly = true
+
+[entryPoints]
+  [entryPoints.http]
+  address = ":4000"
+
+[file]
+
+[backends]
+  [backends.traefik]
+    [backends.traefik.servers.server1]
+    url = "http://localhost:8888"
+  [backends.mirthapi]
+    [backends.mirthapi.servers.server1]
+    url = "https://localhost:8443"
+
+[frontends]
+  [frontends.traefikadmin]
+  backend = "traefik"
+  priority = 10
+    [frontends.traefikadmin.routes.ping]
+    rule = "Path: /healthz; ReplacePath: /ping"
+  [frontends.mirthapi]
+  backend = "mirthapi"
+  priority = 5
+    [forntends.mirthapi.routes.all]
+    rule = "Method: GET, Method: POST"
+

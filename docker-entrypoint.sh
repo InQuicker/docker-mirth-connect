@@ -2,6 +2,8 @@
 
 set -e
 
+traefik &
+
 if [ "$1" = 'java' ]; then
     chown -R mirth /opt/mirth-connect/appdata
 
