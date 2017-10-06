@@ -27,7 +27,7 @@ RUN cd /tmp \
 
 WORKDIR /opt/mirth-connect
 
-EXPOSE 4000
+EXPOSE 3000
 
 COPY docker-entrypoint.sh /
 ENTRYPOINT ["/docker-entrypoint.sh"]
