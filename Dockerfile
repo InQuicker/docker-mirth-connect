@@ -29,7 +29,8 @@ WORKDIR /opt/mirth-connect
 
 EXPOSE 3000
 
-COPY docker-entrypoint.sh /
+COPY *.sh /
+
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
 CMD ["java", "-jar", "mirth-server-launcher.jar"]
