@@ -3,7 +3,6 @@ FROM openjdk:jre-alpine
 ENV MIRTH_CONNECT_VERSION 3.5.1.b194
 
 COPY ./pkg /tmp
-COPY ./etc /etc
 
 # Mirth Connect is run with user `connect`, uid = 1000
 RUN adduser -S mirth -u 1000
@@ -28,6 +27,7 @@ WORKDIR /opt/mirth-connect
 
 EXPOSE 3000
 
+COPY ./etc /etc
 COPY *.sh /
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
