@@ -8,7 +8,7 @@ COPY ./etc /etc
 # Mirth Connect is run with user `connect`, uid = 1000
 RUN adduser -S mirth -u 1000
 
-RUN apk add gosu vault \
+RUN apk add gosu curl vault \
       --update-cache \
       --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing \
       --allow-untrusted
