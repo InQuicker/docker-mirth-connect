@@ -3,6 +3,7 @@ FROM openjdk:jre-alpine
 ENV MIRTH_CONNECT_VERSION 3.5.1.b194
 
 COPY ./pkg /tmp
+COPY ./etc /etc
 
 # Mirth Connect is run with user `connect`, uid = 1000
 RUN adduser -S mirth -u 1000
@@ -12,9 +13,7 @@ RUN apk add gosu vault \
       --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing \
       --allow-untrusted
 
-RUN mkdir -p /etc/traefik \
-      && mv /tmp/traefik.toml /etc/traefik \
-      && mv /tmp/traefik-1.4.0-rc4 /usr/local/bin/traefik \
+RUN mv /tmp/traefik-1.4.0-rc4 /usr/local/bin/traefik \
       && chmod a+x /usr/local/bin/traefik
 
 VOLUME /opt/mirth-connect/appdata
