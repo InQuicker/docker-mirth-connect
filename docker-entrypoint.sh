@@ -3,13 +3,6 @@
 set -e
 
 if [ "$1" = 'java' ]; then
-  traefik &
-
-  # Wait for Traefik to start before starting backend
-  while ! traefik healthcheck; do
-    sleep 0.5
-  done
-
   [ -x /docker-mirth-preexec.sh ] && /docker-mirth-preexec.sh
   [ -x /docker-mirth-exec.sh ] && /docker-mirth-exec.sh "$@"
 
@@ -18,12 +11,12 @@ if [ "$1" = 'java' ]; then
     sleep 1
   done
 
+  # Wait an additional interval for Mirth to complete initialization
+  sleep 1
+
   [ -x /docker-mirth-postexec.sh ] && /docker-mirth-postexec.sh
 
-  # Exit if Traefik becomes unresponsive
-  while traefik healthcheck; do
-    sleep 60
-  done
+  exec traefik
 else
   exec "$@"
 fi

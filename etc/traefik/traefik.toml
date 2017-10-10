@@ -27,11 +27,13 @@ readOnly = true
 [frontends]
   [frontends.traefikadmin]
   backend = "traefik"
+  method = 'wrr'
   priority = 10
     [frontends.traefikadmin.routes.ping]
     rule = "Path: /healthz; ReplacePath: /ping"
   [frontends.mirthapi]
   backend = "mirthapi"
+  method = 'wrr'
   priority = 5
     [forntends.mirthapi.routes.all]
     rule = "Method: GET, Method: POST"
